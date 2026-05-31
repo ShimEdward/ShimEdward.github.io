@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <meta name="theme-color" content="#080808">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-" content="black-translucent">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Literata:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -1458,7 +1458,55 @@ nav a,
     }
   }
 }
-
+/* ── PROFILE PHOTO ── */
+.profile-photo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.profile-photo {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 22%;
+  border: 2px solid var(--signal);
+  box-shadow: 0 0 0 4px rgba(232,97,42,0.12), 0 0 32px rgba(232,97,42,0.08);
+  display: block;
+  filter: grayscale(8%) contrast(1.04);
+  transition: box-shadow 0.3s, filter 0.3s;
+}
+.profile-photo:hover {
+  box-shadow: 0 0 0 4px rgba(232,97,42,0.25), 0 0 48px rgba(232,97,42,0.18);
+  filter: grayscale(0%) contrast(1.06);
+}
+.profile-name-tag {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.5;
+}
+@media (max-width: 900px) {
+  .profile-photo-wrap {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .profile-photo { width: 130px; height: 130px; }
+  .profile-name-tag { text-align: left; }
+}
+@media (max-width: 640px) {
+  .profile-photo-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
 </style>
 </head>
 <body>
@@ -1549,6 +1597,7 @@ nav a,
     <div class="sec-rule"></div>
   </div>
   <div class="about-grid reveal">
+    
     <div class="about-body">
       <p>Edward Shim is a <strong>Canadian-born inventor, engineer, and serial entrepreneur</strong> based in Amsterdam — and a <strong>self-taught autodidact and polymath</strong> with no formal degree in the fields he pioneered. His technical command of embedded systems, materials science, signal processing, machine learning, and patent architecture was built through relentless independent study and hands-on experimentation, not institutional training. He stands in a tradition of inventor-engineers for whom the laboratory is the classroom.</p>
       <p>He held an academic appointment as <strong>Contract Professor at Seneca College</strong> (now Seneca Polytechnic, Toronto), teaching <em>Leading Global Business</em> at the Seneca International Academy, with a contract extension through end of 2023 — and chose not to continue in institutional academic employment in order to pursue independent research and commercialisation on his own terms. That decision proved generative: free from departmental scope and institutional constraints, he crossed disciplinary lines that academic research rarely crosses — combining textile engineering, clinical sensing, automotive safety, and robotics within a single invention programme. The result is <strong>patents granted across six jurisdictions</strong>, a clinical trial registered with the U.S. National Library of Medicine, peer-reviewed publications in IEEE, HFES, ACM, and Springer venues, and a product platform deployed across robotics, automotive, and hospital care.</p>
@@ -1557,6 +1606,19 @@ nav a,
       <p>Today Brighter Signals B.V. — co-founded by Shim, Andrew Klein, and Christine Fraser and backed by global VC Antler — leads the <strong>Eurostars-9 EU consortium</strong> (Project 10008, €1.41M, 2026–2028) alongside Portuguese robotics company Seed Cognitiva Robotics, integrating tactile fabric sensors into a full robot hand for artificial haptics equivalent to human touch. Brighter Signals also holds a strategic manufacturing agreement with CAIP (Changshu Automotive, China) and is establishing a European production facility in 2026.</p>
     </div>
     <div class="about-sidebar">
+      <div class="profile-photo-wrap">
+  <img
+    src="edward_shim_profile.jpg"
+    alt="Edward Shim — Inventor, Brighter Signals B.V."
+    class="profile-photo"
+    width="220"
+    height="220"
+    loading="eager"
+    decoding="async"
+  >
+  <div class="profile-name-tag">Edward Shim<br>Brighter Signals B.V.<br>Amsterdam</div>
+</div>
+      
       <div class="srow"><div class="skey">Affiliation</div><div class="sval">Brighter Signals B.V., Amsterdam</div></div>
       <div class="srow"><div class="skey">Role</div><div class="sval">Co-Founder · Chief Inventor · Researcher</div></div>
       <div class="srow"><div class="skey">Academic Appointment</div><div class="sval">Contract Professor · Seneca College (now Seneca Polytechnic) · School of Hospitality &amp; Tourism · <em>Leading Global Business</em> · Jan 2023 – Dec 2023 · Left to pursue independent R&amp;D</div></div>
