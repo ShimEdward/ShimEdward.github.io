@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edward Shim — Autodidact · Inventor · Pioneer in Tactile Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Literata:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void: #080808;
+  --deep: #0f0f0e;
+  --surface: #151513;
+  --raised: #1c1c1a;
+  --line: rgba(255,255,255,0.08);
+  --line-bright: rgba(255,255,255,0.15);
+  --text: #e8e4dc;
+  --muted: #7a7870;
+  --soft: #b0aa9f;
+  --signal: #e8612a;
+  --signal-dim: rgba(232,97,42,0.15);
+  --signal-glow: rgba(232,97,42,0.35);
+  --gold: #c9a84c;
+  --blue-cold: #4a8fa8;
+  --green-confirm: #5a8f6a;
+  --mono: 'IBM Plex Mono', monospace;
+  --display: 'Bebas Neue', sans-serif;
+  --body: 'Literata', Georgia, serif;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+
+body{
+  background:var(--void);
+  color:var(--text);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+
+/* Scanline texture */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);
+  pointer-events:none;
+  z-index:9998;
+}
+
+/* ── CURSOR ── */
+body{cursor:crosshair;}
+a,button{cursor:crosshair;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 3rem;height:52px;
+  background:rgba(8,8,8,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+}
+.nav-id{
+  font-family:var(--display);
+  font-size:1.1rem;
+  letter-spacing:0.12em;
+  color:var(--signal);
+}
+.nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center;}
+.nav-links a{
+  font-family:var(--mono);
+  font-size:0.6rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  text-decoration:none;
+  transition:color 0.15s;
+  position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;left:0;bottom:-2px;width:0;height:1px;
+  background:var(--signal);transition:width 0.2s;
+}
+.nav-links a:hover{color:var(--text);}
+.nav-links a:hover::after{width:100%;}
+.nav-signal{
+  width:7px;height:7px;
+  border-radius:50%;
+  background:var(--signal);
+  box-shadow:0 0 6px var(--signal-glow);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-rows:1fr auto;
+  padding:9rem 3rem 4rem;
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid var(--line);
+}
+
+/* Large background text */
+.hero-bg-text{
+  position:absolute;
+  right:-2%;bottom:-8%;
+  font-family:var(--display);
+  font-size:clamp(14rem,28vw,26rem);
+  color:rgba(255,255,255,0.018);
+  line-height:0.85;
+  letter-spacing:-0.02em;
+  pointer-events:none;
+  white-space:nowrap;
+  user-select:none;
+}
+
+/* Animated grid */
+.hero-grid-bg{
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black 30%,transparent 100%);
+  pointer-events:none;
+}
+
+/* Orange corner accent */
+.hero::after{
+  content:'';
+  position:absolute;
+  top:52px;left:0;
+  width:3px;height:120px;
+  background:linear-gradient(to bottom,var(--signal),transparent);
+}
+
+.hero-content{
+  display:grid;
+  grid-template-columns:1fr 420px;
+  gap:5rem;
+  align-items:end;
+  position:relative;z-index:1;
+}
+
+.hero-eyebrow{
+  font-family:var(--mono);
+  font-size:0.65rem;
+  letter-spacing:0.25em;
+  text-transform:uppercase;
+  color:var(--signal);
+  margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:0.8rem;
+}
+.hero-eyebrow::before{content:'▸';font-size:0.5rem;}
+
+.hero-name{
+  font-family:var(--display);
+  font-size:clamp(5rem,10vw,9rem);
+  line-height:0.92;
+  letter-spacing:0.02em;
+  color:var(--text);
+  margin-bottom:1rem;
+}
+.hero-name span{color:var(--signal);}
+
+.hero-title{
+  font-family:var(--mono);
+  font-size:0.75rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:2.5rem;
+  padding-left:1px;
+}
+
+.hero-bio{
+  font-size:1.1rem;
+  font-weight:300;
+  color:var(--soft);
+  max-width:58ch;
+  line-height:1.75;
+  border-left:2px solid var(--signal);
+  padding-left:1.5rem;
+  margin-bottom:2.5rem;
+}
+.hero-bio strong{color:var(--text);font-weight:400;}
+
+.hero-tags{display:flex;flex-wrap:wrap;gap:0.5rem;}
+.htag{
+  font-family:var(--mono);
+  font-size:0.58rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  padding:0.28rem 0.75rem;
+  border:1px solid var(--line-bright);
+  color:var(--muted);
+  transition:border-color 0.2s,color 0.2s;
+}
+.htag:hover{border-color:var(--signal);color:var(--signal);}
+
+/* Stats panel */
+.hero-stats{
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  border:1px solid var(--line-bright);
+  position:relative;
+}
+.hero-stats::before{
+  content:'// SIGNAL OUTPUT';
+  position:absolute;top:-1.8rem;left:0;
+  font-family:var(--mono);font-size:0.55rem;
+  letter-spacing:0.15em;color:var(--muted);
+}
+.stat-row{
+  padding:1.4rem 1.6rem;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+}
+.stat-row:last-child{border-bottom:none;}
+.stat-row:hover{background:rgba(232,97,42,0.04);}
+.stat-val{
+  font-family:var(--display);
+  font-size:2.4rem;
+  color:var(--signal);
+  letter-spacing:0.02em;
+  line-height:1;
+}
+.stat-lbl{
+  font-family:var(--mono);
+  font-size:0.58rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  text-align:right;
+  max-width:14ch;
+  line-height:1.4;
+}
+
+.hero-bottom{
+  position:relative;z-index:1;
+  display:flex;align-items:center;gap:3rem;
+  padding-top:2rem;
+  border-top:1px solid var(--line);
+}
+.hero-scroll-hint{
+  font-family:var(--mono);
+  font-size:0.58rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--muted);
+  display:flex;align-items:center;gap:0.6rem;
+}
+.hero-scroll-hint::after{
+  content:'';
+  display:block;width:40px;height:1px;
+  background:linear-gradient(to right,var(--muted),transparent);
+}
+.hero-links{display:flex;gap:1.5rem;}
+.hero-links a{
+  font-family:var(--mono);
+  font-size:0.6rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  text-decoration:none;
+  transition:color 0.2s;
+}
+.hero-links a:hover{color:var(--signal);}
+
+/* ── SECTION BASE ── */
+section{padding:5rem 3rem;border-bottom:1px solid var(--line);}
+
+.sec-header{
+  display:flex;align-items:baseline;gap:1.5rem;
+  margin-bottom:3.5rem;
+}
+.sec-num{
+  font-family:var(--mono);
+  font-size:0.6rem;
+  letter-spacing:0.1em;
+  color:var(--signal);
+  opacity:0.7;
+}
+.sec-title{
+  font-family:var(--display);
+  font-size:clamp(2.4rem,5vw,4rem);
+  letter-spacing:0.06em;
+  color:var(--text);
+  line-height:1;
+}
+.sec-title em{font-style:normal;color:var(--signal);}
+.sec-rule{flex:1;height:1px;background:var(--line-bright);max-width:80px;}
+.sec-sub{
+  font-family:var(--mono);
+  font-size:0.65rem;
+  letter-spacing:0.12em;
+  color:var(--muted);
+  margin-bottom:2.5rem;
+  max-width:90ch;
+  line-height:1.7;
+}
+
+/* ── PATENT CARDS ── */
+.patent-stack{display:flex;flex-direction:column;gap:0;}
+.patent-item{
+  display:grid;
+  grid-template-columns:160px 1fr auto;
+  gap:2.5rem;
+  padding:2.5rem 0;
+  border-bottom:1px solid var(--line);
+  align-items:start;
+  transition:background 0.2s;
+  position:relative;
+}
+.patent-item:first-child{border-top:1px solid var(--line);}
+.patent-item::before{
+  content:'';
+  position:absolute;left:-3rem;top:0;bottom:0;
+  width:0;
+  background:var(--signal);
+  transition:width 0.2s;
+  opacity:0.6;
+}
+.patent-item:hover::before{width:2px;}
+.patent-item:hover{background:rgba(232,97,42,0.03);padding-left:0.5rem;}
+.p-id{
+  font-family:var(--mono);
+  font-size:0.65rem;
+  letter-spacing:0.1em;
+  color:var(--signal);
+  line-height:1.5;
+}
+.p-body{}
+.p-title{
+  font-family:var(--body);
+  font-size:1.1rem;
+  font-weight:500;
+  color:var(--text);
+  margin-bottom:0.5rem;
+  letter-spacing:-0.01em;
+}
+.p-meta{
+  font-family:var(--mono);
+  font-size:0.58rem;
+  letter-spacing:0.08em;
+  color:var(--muted);
+  margin-bottom:0.8rem;
+  line-height:1.7;
+}
+.p-desc{
+  font-size:0.92rem;
+  font-weight:300;
+  color:var(--soft);
+  line-height:1.65;
+  max-width:68ch;
+}
+.p-badge{
+  font-family:var(--mono);
+  font-size:0.56rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  padding:0.28rem 0.8rem;
+  border:1px solid;
+  white-space:nowrap;
+  align-self:start;
+}
+.badge-granted{border-color:var(--green-confirm);color:var(--green-confirm);}
+.badge-pct{border-color:var(--blue-cold);color:var(--blue-cold);}
+.badge-family{border-color:var(--gold);color:var(--gold);}
+.badge-prep{border-color:var(--line-bright);color:var(--muted);}
+
+/* ── AWARDS GRID ── */
+.awards-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--line);
+}
+.award-cell{
+  background:var(--deep);
+  padding:2rem 1.8rem;
+  transition:background 0.2s;
+  position:relative;
+  overflow:hidden;
+}
+.award-cell:hover{background:var(--raised);}
+.award-cell::after{
+  content:'';
+  position:absolute;bottom:0;left:0;
+  height:2px;width:0;
+  background:var(--signal);
+  transition:width 0.3s;
+}
+.award-cell:hover::after{width:100%;}
+.aw-year{
+  font-family:var(--mono);
+  font-size:0.6rem;
+  letter-spacing:0.15em;
+  color:var(--signal);
+  margin-bottom:0.8rem;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.aw-year::before{content:'◆';font-size:0.4rem;}
+.aw-name{
+  font-size:0.98rem;
+  font-weight:500;
+  color:var(--text);
+  margin-bottom:0.4rem;
+  line-height:1.3;
+}
+.aw-org{
+  font-family:var(--mono);
+  font-size:0.58rem;
+  letter-spacing:0.06em;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+/* ── INNOVATIONS / OPEN RESEARCH ── */
+.innovation-intro{
+  background:var(--raised);
+  border:1px solid var(--line-bright);
+  border-left:3px solid var(--signal);
+  padding:1.5rem 2rem;
+  margin-bottom:3rem;
+}
+.innovation-intro p{
+  font-family:var(--mono);
+  font-size:0.65rem;
+  letter-spacing:0.08em;
+  color:var(--soft);
+  line-height:1.7;
+}
+.innovation-intro strong{color:var(--text);}
+
+.pub-group{
+  font-family:var(--mono);
+  font-size:0.58rem;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--signal);
+  padding:0.6rem 0;
+  border-bottom:1px solid var(--line-bright);
+  margin-top:3rem;
+  margin-bottom:0;
+  display:flex;align-items:center;gap:1rem;
+}
+.pub-group::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(to right,var(--line-bright),transparent);
+}
+
+.pub-item{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:2rem;
+  padding:1.8rem 0;
+  border-bottom:1px solid var(--line);
+  align-items:start;
+  transition:background 0.15s;
+}
+.pub-item:hover{background:rgba(255,255,255,0.02);padding-left:0.3rem;}
+.pub-title-link{
+  font-size:1rem;
+  font-weight:500;
+  color:var(--text);
+  margin-bottom:0.35rem;
+  letter-spacing:-0.01em;
+}
+.pub-title-link a{
+  color:var(--text);
+  text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,0.15);
+  transition:color 0.2s,border-color 0.2s;
+}
+.pub-title-link a:hover{color:var(--signal);border-color:var(--signal);}
+.pub-meta{
+  font-family:var(--mono);
+  font-size:0.58rem;
+  letter-spacing:0.07em;
+  color:var(--muted);
+  line-height:1.65;
+}
+.pub-badge{
+  font-family:var(--mono);
+  font-size:0.55rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  padding:0.22rem 0.65rem;
+  white-space:nowrap;
+  align-self:start;
+  margin-top:0.15rem;
+}
+.pb-patent{background:var(--signal);color:#fff;}
+.pb-pct{background:var(--blue-cold);color:#fff;}
+.pb-peer{background:var(--green-confirm);color:#fff;}
+.pb-open{background:transparent;border:1px solid var(--signal);color:var(--signal);}
+.pb-note{background:transparent;border:1px solid var(--muted);color:var(--muted);}
+.pb-eu{background:#003399;color:#fff;}
+.pb-press{background:var(--raised);border:1px solid var(--line-bright);color:var(--soft);}
+.pb-council{background:rgba(90,58,107,0.6);border:1px solid rgba(150,100,180,0.4);color:#c8a8e8;}
+.pb-future{background:transparent;border:1px dashed var(--signal);color:var(--signal);opacity:0.7;}
+
+/* Open research disclaimer */
+.open-research-note{
+  font-family:var(--mono);
+  font-size:0.6rem;
+  letter-spacing:0.08em;
+  color:var(--muted);
+  line-height:1.6;
+  padding:0.8rem 1.2rem;
+  border:1px dashed var(--line-bright);
+  margin-top:0.5rem;
+  margin-bottom:0;
+}
+
+/* ── RESEARCH CONTRIBUTIONS ── */
+.contrib-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1px;
+  background:var(--line);
+}
+.contrib-cell{
+  background:var(--deep);
+  padding:2.5rem 2rem;
+  transition:background 0.2s;
+}
+.contrib-cell:hover{background:var(--raised);}
+.contrib-icon{
+  font-size:1.2rem;
+  opacity:0.5;
+  margin-bottom:1rem;
+  display:block;
+}
+.contrib-title{
+  font-family:var(--body);
+  font-size:1rem;
+  font-weight:500;
+  color:var(--text);
+  margin-bottom:0.6rem;
+  letter-spacing:-0.01em;
+}
+.contrib-body{
+  font-size:0.9rem;
+  font-weight:300;
+  color:var(--soft);
+  line-height:1.65;
+}
+
+/* ── GRANTS ── */
+.grant-grid{display:flex;flex-direction:column;gap:0;}
+.grant-row{
+  display:grid;
+  grid-template-columns:200px 1fr auto;
+  gap:2rem;
+  padding:1.5rem 0;
+  border-bottom:1px solid var(--line);
+  align-items:start;
+}
+.grant-row:first-child{border-top:1px solid var(--line);}
+.grant-funder{
+  font-family:var(--mono);
+  font-size:0.62rem;
+  letter-spacing:0.1em;
+  color:var(--signal);
+  line-height:1.5;
+}
+.grant-title{
+  font-size:0.92rem;
+  font-weight:400;
+  color:var(--text);
+  margin-bottom:0.25rem;
+}
+.grant-period{
+  font-family:var(--mono);
+  font-size:0.58rem;
+  letter-spacing:0.08em;
+  color:var(--muted);
+}
+.grant-amount{
+  font-family:var(--mono);
+  font-size:0.62rem;
+  letter-spacing:0.08em;
+  color:var(--gold);
+  white-space:nowrap;
+  align-self:start;
+}
+
+/* ── COLLAB GRID ── */
+.collab-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:var(--line);
+}
+.collab-cell{
+  background:var(--deep);
+  padding:1.8rem 1.5rem;
+  transition:background 0.2s;
+}
+.collab-cell:hover{background:var(--raised);}
+.collab-type{
+  font-family:var(--mono);
+  font-size:0.55rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--signal);
+  margin-bottom:0.6rem;
+}
+.collab-name{
+  font-size:0.9rem;
+  font-weight:500;
+  color:var(--text);
+  margin-bottom:0.3rem;
+  line-height:1.3;
+}
+.collab-detail{
+  font-family:var(--mono);
+  font-size:0.56rem;
+  letter-spacing:0.05em;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+/* ── OSS ── */
+.oss-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--line);
+}
+.oss-cell{
+  background:var(--deep);
+  padding:2rem 1.8rem;
+  transition:background 0.2s;
+}
+.oss-cell:hover{background:var(--raised);}
+.oss-lang{
+  font-family:var(--mono);
+  font-size:0.55rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--signal);
+  margin-bottom:0.6rem;
+}
+.oss-name{
+  font-size:0.95rem;
+  font-weight:500;
+  color:var(--text);
+  margin-bottom:0.5rem;
+}
+.oss-desc{
+  font-size:0.85rem;
+  font-weight:300;
+  color:var(--soft);
+  line-height:1.55;
+  margin-bottom:1rem;
+}
+.oss-link{
+  font-family:var(--mono);
+  font-size:0.58rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+  text-decoration:none;
+  border-bottom:1px solid var(--line-bright);
+  padding-bottom:1px;
+  transition:color 0.2s,border-color 0.2s;
+}
+.oss-link:hover{color:var(--signal);border-color:var(--signal);}
+
+/* ── ABOUT SIDEBAR ── */
+.about-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:4rem;
+  align-items:start;
+}
+.about-body p{
+  font-size:1.05rem;
+  font-weight:300;
+  color:var(--soft);
+  margin-bottom:1.1rem;
+  max-width:72ch;
+}
+.about-body p strong{color:var(--text);font-weight:400;}
+.about-sidebar{}
+.srow{
+  padding:1rem 0;
+  border-bottom:1px solid var(--line);
+  display:grid;
+  grid-template-columns:1fr;
+  gap:0.2rem;
+}
+.srow:first-child{border-top:1px solid var(--line);}
+.skey{
+  font-family:var(--mono);
+  font-size:0.55rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--signal);
+}
+.sval{
+  font-size:0.88rem;
+  color:var(--soft);
+  line-height:1.55;
+}
+.sval a{color:var(--soft);text-decoration:none;border-bottom:1px dotted var(--muted);}
+.sval a:hover{color:var(--signal);}
+
+/* ── FOOTER ── */
+footer{
+  padding:2.5rem 3rem;
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid var(--line);
+}
+.footer-id{
+  font-family:var(--mono);
+  font-size:0.6rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.footer-links{display:flex;gap:2rem;}
+.footer-links a{
+  font-family:var(--mono);
+  font-size:0.58rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+  text-decoration:none;
+  transition:color 0.2s;
+}
+.footer-links a:hover{color:var(--signal);}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.anim-0{opacity:0;animation:fadeUp 0.7s 0.1s forwards;}
+.anim-1{opacity:0;animation:fadeUp 0.7s 0.3s forwards;}
+.anim-2{opacity:0;animation:fadeUp 0.7s 0.5s forwards;}
+.anim-3{opacity:0;animation:fadeIn 0.9s 0.7s forwards;}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .hero-content{grid-template-columns:1fr;}
+  .hero-stats{display:grid;grid-template-columns:repeat(2,1fr);}
+  .stat-row{border-right:1px solid var(--line);}
+  .collab-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:800px){
+  nav{padding:0 1.5rem;}
+  .nav-links{gap:1.5rem;}
+  section{padding:3.5rem 1.5rem;}
+  .hero{padding:7rem 1.5rem 3rem;}
+  .awards-grid{grid-template-columns:1fr 1fr;}
+  .contrib-grid{grid-template-columns:1fr;}
+  .oss-grid{grid-template-columns:1fr 1fr;}
+  .grant-row{grid-template-columns:1fr;gap:0.5rem;}
+  .about-grid{grid-template-columns:1fr;}
+  .patent-item{grid-template-columns:1fr;gap:0.8rem;}
+  .pub-item{grid-template-columns:1fr;gap:0.5rem;}
+  footer{flex-direction:column;gap:1.5rem;}
+}
+@media(max-width:540px){
+  .nav-links{display:none;}
+  .hero-name{font-size:3.8rem;}
+  .awards-grid,.oss-grid,.collab-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-id">E. SHIM</span>
+  <ul class="nav-links">
+    <li><a href="#about">Profile</a></li>
+    <li><a href="#patents">Patents</a></li>
+    <li><a href="#awards">Recognition</a></li>
+    <li><a href="#contributions">Research</a></li>
+    <li><a href="#innovations">Publications</a></li>
+    <li><a href="#grants">Grants</a></li>
+    <li><a href="#collab">Collaborations</a></li>
+    <li><a href="#opensource">Open Source</a></li>
+  </ul>
+  <div class="nav-signal"></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="border-bottom:1px solid var(--line);">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-bg-text">SHIM</div>
+
+  <div class="hero-content">
+    <div class="anim-0">
+      <div class="hero-eyebrow">Autodidact · Inventor · Pioneer in Tactile Intelligence</div>
+      <h1 class="hero-name">EDWARD<br><span>SHIM</span></h1>
+      <div class="hero-title">Co-Founder &amp; Chief Inventor, Brighter Signals B.V. · Amsterdam · Autodidact · Independent Researcher</div>
+      <p class="hero-bio">
+        Inventor of <strong>foundational tactile sensing architectures</strong> deployed across robotics, automotive safety, and healthcare monitoring. Over a decade of original R&D — from the first fabric sensor that monitors vital signs through a bedsheet, to a multi-modal platform now integrated into robot hands and vehicle occupancy systems. <strong>Pioneer of projected dielectric sensing</strong> and flexible conductive pressure detection, with patents granted in six jurisdictions.
+      </p>
+      <div class="hero-tags">
+        <span class="htag">Tactile Intelligence</span>
+        <span class="htag">Projected Dielectric Sensing</span>
+        <span class="htag">Fabric Electronics</span>
+        <span class="htag">Occupant Classification</span>
+        <span class="htag">Signal Processing</span>
+        <span class="htag">Mid-Air Haptics</span>
+        <span class="htag">Embedded Systems</span>
+        <span class="htag">Multimodal Sensing</span>
+        <span class="htag">Automotive Safety</span>
+        <span class="htag">Healthcare Sensing</span>
+      </div>
+    </div>
+
+    <div class="hero-stats anim-3">
+      <div class="stat-row">
+        <div class="stat-val">7+</div>
+        <div class="stat-lbl">Patents Granted &amp; Filed (6 Jurisdictions)</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-val">€3.4M+</div>
+        <div class="stat-lbl">R&amp;D Grants Canada + EU Eurostars</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-val">34+</div>
+        <div class="stat-lbl">Google Scholar Citations</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-val">10+</div>
+        <div class="stat-lbl">Years Sensor R&amp;D</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-val">3</div>
+        <div class="stat-lbl">Industries: Robotics · Auto · Health</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-bottom anim-2">
+    <div class="hero-scroll-hint">Scroll to explore</div>
+    <div class="hero-links">
+      <a href="https://www.brightersignals.com" target="_blank">brightersignals.com ↗</a>
+      <a href="https://scholar.google.com/citations?user=XV_7vAkAAAAJ&hl=en" target="_blank">Google Scholar ↗</a>
+      <a href="https://patents.google.com/patent/US12399294B1" target="_blank">USPTO ↗</a>
+      <a href="https://www.linkedin.com/in/eddieshim/" target="_blank">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-header reveal">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">PIONEER <em>PROFILE</em></h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="about-grid reveal">
+    <div class="about-body">
+      <p>Edward Shim is a <strong>Canadian-born Korean inventor, engineer, and serial entrepreneur</strong> based in Amsterdam — and a <strong>self-taught autodidact and polymath</strong> with no formal degree in the fields he pioneered. His technical command of embedded systems, materials science, signal processing, machine learning, and patent architecture was built through relentless independent study and hands-on experimentation, not institutional training. He stands in a tradition of inventor-engineers for whom the laboratory is the classroom.</p>
+      <p>He held an academic appointment as <strong>Contract Professor at Seneca College</strong> (now Seneca Polytechnic, Toronto), teaching <em>Leading Global Business</em> at the Seneca International Academy, with a contract extension through end of 2023 — and chose not to continue in institutional academic employment in order to pursue independent research and commercialisation on his own terms. That decision proved generative: free from departmental scope and institutional constraints, he crossed disciplinary lines that academic research rarely crosses — combining textile engineering, clinical sensing, automotive safety, and robotics within a single invention programme. The result is <strong>patents granted across six jurisdictions</strong>, a clinical trial registered with the U.S. National Library of Medicine, peer-reviewed publications in IEEE, HFES, ACM, and Springer venues, and a product platform deployed across robotics, automotive, and hospital care.</p>
+      <p>A former <strong>Canadian Army paratrooper and humanitarian award recipient</strong>, his path into sensor engineering began with a personal chest injury and direct observation of trauma care gaps — leading to an intelligent bedsheet that monitors vital signs without any attachment to the patient. During COVID-19 he pivoted that same manufacturing knowledge to coordinate export of PPE to Canada, achieving <strong>Health Canada clearance within five weeks</strong>.</p>
+      <p>In July 2021 the <strong>Executive Council of Ontario (O.C. 1041/2021)</strong> appointed him to the <strong>Board of Governors of Ryerson University</strong> (now Toronto Metropolitan University) by Order in Council of the Lieutenant Governor, recommended by the Premier, for a three-year fixed term.</p>
+      <p>Today Brighter Signals B.V. — co-founded by Shim, Andrew Klein, and Christine Fraser and backed by global VC Antler — leads the <strong>Eurostars-9 EU consortium</strong> (Project 10008, €1.41M, 2026–2028) alongside Portuguese robotics company Seed Cognitiva Robotics, integrating tactile fabric sensors into a full robot hand for artificial haptics equivalent to human touch. Brighter Signals also holds a strategic manufacturing agreement with CAIP (Changshu Automotive, China) and is establishing a European production facility in 2026.</p>
+    </div>
+    <div class="about-sidebar">
+      <div class="srow"><div class="skey">Affiliation</div><div class="sval">Brighter Signals B.V., Amsterdam</div></div>
+      <div class="srow"><div class="skey">Role</div><div class="sval">Co-Founder · Chief Inventor · Researcher</div></div>
+      <div class="srow"><div class="skey">Academic Appointment</div><div class="sval">Contract Professor · Seneca College (now Seneca Polytechnic) · School of Hospitality &amp; Tourism · <em>Leading Global Business</em> · Jan 2023 – Dec 2023 · Left to pursue independent R&amp;D</div></div>
+      <div class="srow"><div class="skey">Formation</div><div class="sval">Self-taught autodidact &amp; polymath · No formal degree in the fields he invented in · Independent researcher</div></div>
+      <div class="srow"><div class="skey">Board Appointment</div><div class="sval">Ryerson University (TMU) Board of Governors · O.C. 1041/2021 · Ontario Lieutenant Governor</div></div>
+      <div class="srow"><div class="skey">Investor</div><div class="sval">Antler (Global VC · 30 cities · 1,400+ portfolio)</div></div>
+      <div class="srow"><div class="skey">EU Consortium</div><div class="sval">Eurostars-9 · Project 10008 · Brighter Signals (NL) + Seed Robotics (PT)</div></div>
+      <div class="srow"><div class="skey">Military Service</div><div class="sval">Canadian Army · Paratrooper · Veteran · Humanitarian Award</div></div>
+      <div class="srow"><div class="skey">Google Scholar</div><div class="sval"><a href="https://scholar.google.com/citations?user=XV_7vAkAAAAJ&hl=en" target="_blank">34 citations · Tactile Sensing · Mid-Air Haptics · Multimodal Sensing</a></div></div>
+      <div class="srow"><div class="skey">Media</div><div class="sval">Forbes · Globe &amp; Mail · EE News Asia · Asia Pacific Foundation · VentureBeat · The Robot Report</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PATENTS -->
+<section id="patents">
+  <div class="sec-header reveal">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">PATENT <em>PORTFOLIO</em></h2>
+    <div class="sec-rule"></div>
+  </div>
+  <p class="sec-sub reveal">Original inventions granted or pending across the United States, WIPO (PCT), Canada, Taiwan, China, Hong Kong, and the European Patent Office. All IP originally assigned to Studio 1 Labs Inc.; reassigned to Brighter Signals B.V. effective December 2025.</p>
+
+  <div class="patent-stack">
+    <div class="patent-item reveal">
+      <div class="p-id">US 12,399,294 B1<br>Granted 26 Aug 2025</div>
+      <div class="p-body">
+        <div class="p-title">Projected Dielectric Sensor for Matter Detection, Proximity Detection, and Gesture Control</div>
+        <div class="p-meta">USPTO · Assignee: Brighter Signals B.V. · Inventors: Edward Shim &amp; Marouane El Kamel · Priority: Oct 2016</div>
+        <div class="p-desc">A co-planar, longitudinal X-plane capacitive architecture with two conductive mesh sheets separated by an open-circuit dielectric gap (≥10 cm, up to 5 m). Detects matter projected off-axis without physical contact — enabling gesture recognition, proximity detection, and occupant classification. Architecturally distinct from all prior stacked or crossed-grid arrays. The core platform for automotive gesture sensing and Brighter Signals' projected dielectric product line.</div>
+      </div>
+      <div class="p-badge badge-granted">Granted</div>
+    </div>
+
+    <div class="patent-item reveal">
+      <div class="p-id">US 10,386,224 B2<br>Granted 20 Aug 2019</div>
+      <div class="p-body">
+        <div class="p-title">Flexible Conductive Apparatus and Systems for Detecting Pressure</div>
+        <div class="p-meta">USPTO · Priority: 25 Oct 2016 · Inventors: Edward Sup Shim &amp; Ying-Hsin Lin · Original Assignee: Studio 1 Labs Inc. · Reassigned: Brighter Signals B.V. (Dec 2025)<br>International family: WO2018076106A1 (WIPO) · CA3010114 (CIPO) · TWI647606 (TIPO) · CN 2017800021264 (CNIPA) · HK 19100027.6 (IPD HK)</div>
+        <div class="p-desc">A variable conductive apparatus where applied external force increases conductive contact surface area between two fabric paths, producing a proportional increase in conductivity. The foundational architecture for the intelligent bedsheet and the entire fabric pressure-sensing product line. Granted across six jurisdictions — the broadest granted patent in Brighter Signals' portfolio.</div>
+      </div>
+      <div class="p-badge badge-family">6 Jurisdictions</div>
+    </div>
+
+    <div class="patent-item reveal">
+      <div class="p-id">WO 2025/012367 A1<br>Published 16 Jan 2025</div>
+      <div class="p-body">
+        <div class="p-title">A Woven Fabric Sensor for Multi-Dimensional Sensing and an Operating Method for Analysing a Single Input Sensor Signal Generated by a Woven Fabric Sensor</div>
+        <div class="p-meta">PCT/EP2024/069624 · Priority: 11 Jul 2023 · Inventors: Edward Shim, Karsten Wegner, Tomasz Andrzej Palacz · Applicant: Studio 1 Labs Danielewicz Shim Wegner Ltd. Joint Stock Partnership · CN priority filed · A61B5 medical classification (pulse, respiration, thoracic expansion)</div>
+        <div class="p-desc">A woven fabric sensor architecture where non-conductive wefts float over adjacent conductive warps, forming electrically connected bridge paths and continuous conductivity networks. Enables voltage differential sensing, achieves improved signal-to-noise ratio, and reduces power consumption through increased sensing area. Applicable to seats, beds, and wearable structures for non-contact vital sign monitoring.</div>
+      </div>
+      <div class="p-badge badge-pct">PCT · Pending</div>
+    </div>
+
+    <div class="patent-item reveal">
+      <div class="p-id">Portfolio<br>Acquired 2025</div>
+      <div class="p-body">
+        <div class="p-title">High-Depth Multi-Modal Tactile Sensor Platform (Fabric-Based)</div>
+        <div class="p-meta">Assignee: Brighter Signals B.V. · Foundational portfolio — acquired at company launch, Jun 2025</div>
+        <div class="p-desc">Foundational portfolio covering multi-modal tactile sensors constructed entirely from fabric. Captures high-resolution pressure gradients in real time across grippers, vehicle surfaces, and structural materials. Sensors are lightweight, durable, and fully recyclable.</div>
+      </div>
+      <div class="p-badge badge-granted">Granted Portfolio</div>
+    </div>
+
+    <div class="patent-item reveal">
+      <div class="p-id">In Preparation<br>Brighter Signals B.V.</div>
+      <div class="p-body">
+        <div class="p-title">Resistive Matrix Occupant Classification System — Automotive Seat (OCS-R16)</div>
+        <div class="p-meta">Assignee: Brighter Signals B.V. · Strictly separate from patented capacitive X-plane architecture</div>
+        <div class="p-desc">A 16×8 resistive sensing matrix in automotive seat structures using multiplexed MUX architecture (CD74HC4067/CD74HC4051). Features VCC bandgap compensation, adaptive capacitive baseline EMA, dual-sensor gate fusion, and backrest out-of-position detection. Targets FMVSS 208 and ECE R94 compliance.</div>
+      </div>
+      <div class="p-badge badge-prep">In Preparation</div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="sec-header reveal">
+    <span class="sec-num">03</span>
+    <h2 class="sec-title">RECOGNITION &amp; <em>HONOURS</em></h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="awards-grid reveal">
+    <div class="award-cell">
+      <div class="aw-year">2021</div>
+      <div class="aw-name">Best Executive in Canada — Operations</div>
+      <div class="aw-org">Report on Business Magazine · The Globe and Mail · One of 50 national winners · Announced 3 Mar 2021 · Featured May 2021 issue</div>
+    </div>
+    <div class="award-cell">
+      <div class="aw-year">2021</div>
+      <div class="aw-name">Order in Council — Board of Governors, Ryerson University</div>
+      <div class="aw-org">O.C. 1041/2021 · Executive Council of Ontario · Signed 29 Jul 2021 by Lieutenant Governor · Recommended by Premier · 3-year fixed term</div>
+    </div>
+    <div class="award-cell">
+      <div class="aw-year">2019</div>
+      <div class="aw-name">Audi Innovation Award</div>
+      <div class="aw-org">Audi AG · Proof-of-concept SMART vehicle seats · Ingolstadt, Germany</div>
+    </div>
+    <div class="award-cell">
+      <div class="aw-year">2019</div>
+      <div class="aw-name">Forbes Technology Council — Member</div>
+      <div class="aw-org">Forbes Councils · Invitation-only · World-class CIOs, CTOs &amp; senior technology executives · Expert panel contributor</div>
+    </div>
+    <div class="award-cell">
+      <div class="aw-year">2019</div>
+      <div class="aw-name">NGen Advanced Manufacturing Pitch</div>
+      <div class="aw-org">Next Generation Manufacturing Canada · Project Pitch Day · Kitchener, Ontario</div>
+    </div>
+    <div class="award-cell">
+      <div class="aw-year">2018</div>
+      <div class="aw-name">Awesome Startup Award</div>
+      <div class="aw-org">YongLin Healthcare Foundation · Foxconn · Best pitch · TRANS Conference 2018 · Taipei, Taiwan</div>
+    </div>
+    <div class="award-cell">
+      <div class="aw-year">2018</div>
+      <div class="aw-name">Top 25 Canadian ICT Company</div>
+      <div class="aw-org">Branham Group Inc. · Selected for creativity and innovation · Toronto, Ontario</div>
+    </div>
+    <div class="award-cell">
+      <div class="aw-year">2018</div>
+      <div class="aw-name">Startup ASPIRE Award</div>
+      <div class="aw-org">Markham Board of Trade · Business Excellence Awards · Markham, Ontario</div>
+    </div>
+    <div class="award-cell">
+      <div class="aw-year">Service</div>
+      <div class="aw-name">Humanitarian Award</div>
+      <div class="aw-org">Trauma care innovation (extreme casualty solutions) + coordination of PPE supply to Canada at onset of COVID-19 pandemic</div>
+    </div>
+    <div class="award-cell">
+      <div class="aw-year">2025</div>
+      <div class="aw-name">Antler Portfolio Company</div>
+      <div class="aw-org">Antler Global VC · 30 cities · 1,400+ portfolio companies · 6 continents</div>
+    </div>
+    <div class="award-cell">
+      <div class="aw-year">2022</div>
+      <div class="aw-name">Canadian Space Agency — Health Beyond Summit</div>
+      <div class="aw-org">E-Poster: Multi-Dimensional Sensing from a Single Advanced Fabric Sensor · Quebec, Canada</div>
+    </div>
+    <div class="award-cell">
+      <div class="aw-year">€3.4M+</div>
+      <div class="aw-name">R&amp;D Grant Funding</div>
+      <div class="aw-org">NSERC · FedDev · OCE · NRC Canada · Marist College · Eurostars-9 EU (€1.41M) · spanning 2016–2028</div>
+    </div>
+  </div>
+</section>
+
+<!-- SCIENTIFIC CONTRIBUTIONS -->
+<section id="contributions">
+  <div class="sec-header reveal">
+    <span class="sec-num">04</span>
+    <h2 class="sec-title">SCIENTIFIC <em>CONTRIBUTIONS</em></h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="contrib-grid reveal">
+    <div class="contrib-cell">
+      <span class="contrib-icon">⟡</span>
+      <div class="contrib-title">Projected Dielectric Sensing — New Sensing Topology</div>
+      <div class="contrib-body">Invented the X-plane longitudinal co-planar capacitive architecture enabling off-axis object detection through a large open-circuit gap. Underpins gesture control, proximity sensing, and occupant classification from centimetres to metres. Fundamentally distinct from all prior stacked or grid-based capacitive architectures. Granted US 12,399,294 B1 (2025).</div>
+    </div>
+    <div class="contrib-cell">
+      <span class="contrib-icon">◈</span>
+      <div class="contrib-title">Woven Fabric Multi-Dimensional Sensor Architecture</div>
+      <div class="contrib-body">Developed a woven fabric sensor in which non-conductive wefts floating over adjacent conductive warps generate overlapping bridge paths and continuous conductivity networks. First fabric architecture to enable voltage differential sensing through weave geometry alone. Achieves improved SNR and reduced power without added components. PCT WO2025012367A1 (Jan 2025), A61B5 medical classification.</div>
+    </div>
+    <div class="contrib-cell">
+      <span class="contrib-icon">⬡</span>
+      <div class="contrib-title">Child Presence Detection via C4/C5 Capacitive Ratio</div>
+      <div class="contrib-body">Validated a zero-hardware-overhead classifier: a simple C5/C4 channel ratio achieves 100% accuracy (Welch's t=103.9, Cohen's d=1.57) distinguishing a human infant from inanimate objects — across 5 sessions and 36,376 samples. Directly applicable to automotive CPD mandates without additional sensor hardware.</div>
+    </div>
+    <div class="contrib-cell">
+      <span class="contrib-icon">△</span>
+      <div class="contrib-title">Anthropometric OCS Sensor Placement — 4.3 cm Gap Discovery</div>
+      <div class="contrib-body">Conducted an n=97 backrest anthropometric study (ANSUR II / CAESAR) identifying a clean 4.3 cm TorsoSit gap with zero child-adult overlap — enabling a hard classification threshold. A two-sensor backrest configuration reduces channels by ~73% while maintaining FMVSS 208 and ECE R94 compliance.</div>
+    </div>
+    <div class="contrib-cell">
+      <span class="contrib-icon">○</span>
+      <div class="contrib-title">ML-Based Out-of-Position Classification — 20-Feature Study</div>
+      <div class="contrib-body">Six models under 10-fold stratified CV across 967 pose observations and a 20-dimensional feature vector. Random Forest led binary OOP F1 (66.52%); Gradient Boosting led 5-class (54.19%). C5/C4 ratio identified as the top discriminating feature. Forward lean confirmed as dominant OOP type (61% of instances).</div>
+    </div>
+    <div class="contrib-cell">
+      <span class="contrib-icon">✦</span>
+      <div class="contrib-title">Passive Vital-Sign Monitoring — Intelligent Bedsheet Platform</div>
+      <div class="contrib-body">Pioneered a bedsheet sensor monitoring pulse, respiration, and thoracic expansion without body attachments. Validated clinically at York University Nursing Simulation Centre and in a veterinary proof-of-concept (6 dogs, p=0.0185 HR, p=0.005 RR vs. standard monitoring). Cited by EE News Asia as a tool for COVID-19 BCRSS triage respiratory rate assessment. Tested in a 4×8 ft equine monitoring deployment. IBM / Marist College edge-computing trials completed.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS / INNOVATIONS / OPEN RESEARCH -->
+<section id="innovations">
+  <div class="sec-header reveal">
+    <span class="sec-num">05</span>
+    <h2 class="sec-title">PUBLICATIONS &amp; <em>OPEN RESEARCH</em></h2>
+    <div class="sec-rule"></div>
+  </div>
+
+  <div class="innovation-intro reveal">
+    <p>
+      <strong>Publishing philosophy:</strong> Peer-reviewed publications are listed with venue and DOI where available and clearly labelled. Future technical work will be self-published on this site as <strong>Technical Notes</strong> and <strong>Working Papers</strong> — clearly distinguished from peer-reviewed literature. Self-published work represents the author's independent findings and has not undergone external peer review. For open-source implementations, see the Open Source section below.
+    </p>
+  </div>
+
+  <!-- PATENTS AS IP PUBLICATIONS -->
+  <div class="pub-group reveal">Patents &amp; IP — Primary Inventive Record</div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link"><a href="https://patents.google.com/patent/US12399294B1" target="_blank">Projected Dielectric Sensor for Matter Detection, Proximity Detection, and Gesture Control</a></div>
+      <div class="pub-meta">US 12,399,294 B1 · USPTO · Granted 26 Aug 2025 · Inventors: Edward Shim &amp; Marouane El Kamel · Assignee: Brighter Signals B.V.</div>
+    </div>
+    <span class="pub-badge pb-patent">US Patent</span>
+  </div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link"><a href="https://patents.google.com/patent/WO2025012367A1/en" target="_blank">A Woven Fabric Sensor for Multi-Dimensional Sensing and an Operating Method for Analysing a Single Input Sensor Signal</a></div>
+      <div class="pub-meta">WO 2025/012367 A1 · PCT/EP2024/069624 · Published 16 Jan 2025 · Priority: 11 Jul 2023 · Inventors: Edward Shim, Karsten Wegner, Tomasz Andrzej Palacz · CN priority filed</div>
+    </div>
+    <span class="pub-badge pb-pct">PCT Patent</span>
+  </div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link"><a href="https://patents.google.com/patent/US10386224B2/en" target="_blank">Flexible Conductive Apparatus and Systems for Detecting Pressure</a></div>
+      <div class="pub-meta">US 10,386,224 B2 · Granted 20 Aug 2019 · International family: WO2018076106A1 · CA3010114 · TWI647606 · CN2017800021264 · HK19100027.6 · Priority: Oct 2016 · Inventors: Edward Shim &amp; Ying-Hsin Lin</div>
+    </div>
+    <span class="pub-badge pb-patent">6-Jurisdiction Patent</span>
+  </div>
+
+  <!-- PEER-REVIEWED -->
+  <div class="pub-group reveal">Peer-Reviewed Journal &amp; Conference Papers</div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link"><a href="https://journals.sagepub.com/doi/abs/10.1177/1541931218621271" target="_blank">Intelligent Bed Sheet Detects Respiratory Patterns</a></div>
+      <div class="pub-meta">Laura Nicholson, Olivia Lin, Edward Shim · Human Factors and Ergonomics Society Annual Meeting 2018 · DOI: 10.1177/1541931218621271 · Philadelphia, USA</div>
+    </div>
+    <span class="pub-badge pb-peer">HFES 2018</span>
+  </div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link"><a href="https://dl.acm.org/doi/10.5555/3291291.3291356" target="_blank">Large-Scale Multilevel Streaming Data Analytics</a></div>
+      <div class="pub-meta">Farhana Zulkernine, Haruna Isah, Sidney Givigi, Yan Liu, Edward Shim, Marwa Elsayed · CASCON 2018 — 28th Annual International Conference on Computer Science and Software Engineering · ACM · Markham, Canada</div>
+    </div>
+    <span class="pub-badge pb-peer">CASCON 2018</span>
+  </div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link">Smart Bedsheet for Baby Monitoring Application: Measurement and Characterization Results</div>
+      <div class="pub-meta">Samal Munidasa, Parastoo Baghaei, Edward Shim, Olivia Lin, Ebrahim Ghafar-Zadeh · IEEE EMBC 2020 · 42nd Annual International Conference · Montreal, Canada · York University BioSA Lab / Studio 1 Labs</div>
+    </div>
+    <span class="pub-badge pb-peer">IEEE EMBC 2020</span>
+  </div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link">A Bedsheet for Baby Monitoring at Night: Measurement and Characterization Results</div>
+      <div class="pub-meta">Samal Munidasa, Parastoo Baghaei, Edward Shim, Olivia Lin, Ebrahim Ghafar-Zadeh · IEEE CCECE 2020 · Canadian Conference on Electrical and Computer Engineering · London, Canada</div>
+    </div>
+    <span class="pub-badge pb-peer">IEEE CCECE 2020</span>
+  </div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link">Developing a Scalable Platform and Analytics Dashboard for Manual Physical Therapy Practices Using Pressure Sensing Fabric</div>
+      <div class="pub-meta">T.V. Rimaldi, D.R. Grossmann, D.R. Schwartz · Studio 1 Labs (Edward Shim) · Advances in Software Engineering, Education, and e-Learning · Springer Nature Switzerland AG · ISBN 978-3-030-70873-3 · DOI: 10.1007/978-3-030-70873-3_19 · p. 277 · 2021</div>
+    </div>
+    <span class="pub-badge pb-peer">Springer 2021</span>
+  </div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link">Development of Artificial Exterior Skin for Remote Robotics Providing Dexterity Feedback Equivalent to Human Sense of Touch</div>
+      <div class="pub-meta">Kellen Devries, Lucas Vanderaa, Edward Shim, Olivia Y.-H. Lin, Nadja Bressan · 70th International Astronautical Congress (IAC) · Paper ID: 52534 · IAF Materials &amp; Structures Symposium (C2) · 2019 · UPEI / Studio 1 Labs · In Press: MDPI</div>
+    </div>
+    <span class="pub-badge pb-peer">IAC 2019</span>
+  </div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link"><a href="https://clinicaltrials.gov/ct2/show/NCT03119103" target="_blank">Functional Bed Sheet Capturing Pressure Variation and Respiratory Effort Over Time</a></div>
+      <div class="pub-meta">Laura Nicholson, Olivia Lin, Edward Shim · U.S. National Library of Medicine · ClinicalTrials.gov · NCT03119103 · 2017 · Bethesda, USA</div>
+    </div>
+    <span class="pub-badge pb-peer">Clinical Trial Reg.</span>
+  </div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link">Use of a Novel Functional Bed Sheet to Monitor Heart Rate and Respiratory Rate of Six Isoflurane-Anesthetized Dogs</div>
+      <div class="pub-meta">Catherine Creighton, Nadja Bressan, Olivia Lin · Studio 1 Labs collaboration · Veterinary Anaesthesia and Analgesia · Vol. 45 · DOI: 10.1016/j.vaa.2018.09 · UPEI Atlantic Veterinary College</div>
+    </div>
+    <span class="pub-badge pb-peer">Vet. Anaesthesia 2018</span>
+  </div>
+
+  <!-- OPEN RESEARCH / TECHNICAL NOTES -->
+  <div class="pub-group reveal">Open Research — Technical Notes &amp; Working Papers</div>
+  <div class="open-research-note reveal">
+    The following are self-published technical notes and working papers authored by Edward Shim and published directly on this site. They have <strong>not undergone external peer review</strong>. They represent original technical findings, validated datasets, and analytical work intended to be openly accessible to the research and engineering community. Readers should evaluate them accordingly.
+  </div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link">C5/C4 Capacitive Ratio as a Zero-Hardware-Overhead Child Presence Classifier: A Proof-of-Concept Study</div>
+      <div class="pub-meta">Edward Shim · Brighter Signals B.V. · 36,376-sample dataset · 5 sessions · Welch's t=103.9 · Cohen's d=1.57 · Self-published Technical Note</div>
+    </div>
+    <span class="pub-badge pb-open">Technical Note</span>
+  </div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link">Anthropometric Basis for Minimal-Channel Backrest OCS: A Two-Sensor Configuration Achieving FMVSS 208 Compliance</div>
+      <div class="pub-meta">Edward Shim · n=97 · ANSUR II / CAESAR databases · 4.3 cm TorsoSit gap · Brighter Signals B.V. · Self-published Technical Note</div>
+    </div>
+    <span class="pub-badge pb-open">Technical Note</span>
+  </div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link">Machine Learning for Out-of-Position Detection in Automotive Seating: A 20-Feature Comparative Study</div>
+      <div class="pub-meta">Edward Shim · 967 pose observations · 6 classifiers · 10-fold stratified CV · Random Forest F1 66.52% (binary OOP) · Brighter Signals B.V. · Self-published Technical Note</div>
+    </div>
+    <span class="pub-badge pb-open">Technical Note</span>
+  </div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link">Logarithmic Characterisation of Textile Resistive Sensors for Weight Detection in Automotive Occupant Classification</div>
+      <div class="pub-meta">Edward Shim · Multi-sensor DOE (HC 5×5 mm, HC 50×50 mm flat/folded, FSR, flex) · tL = 479×ln(W)+389, r=0.912 · Brighter Signals B.V. · Self-published Technical Note</div>
+    </div>
+    <span class="pub-badge pb-open">Technical Note</span>
+  </div>
+
+  <!-- FUTURE / UPCOMING -->
+  <div class="pub-group reveal">Forthcoming Technical Notes — In Preparation</div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link">High-Depth Tactile Sensor Integration into a Full Robotic Hand: Materials, Form Factor, and Mechanical Validation</div>
+      <div class="pub-meta">Edward Shim et al. · Brighter Signals B.V. / Seed Cognitiva Robotics Innovation Ltd · Eurostars-9 Project 10008 · In preparation · Expected 2027</div>
+    </div>
+    <span class="pub-badge pb-future">Forthcoming</span>
+  </div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link">Multi-Modal Tactile Data Interpretation for Robot Gripper Applications: Proximity, Touch Depth, and Spatial Resolution Optimisation</div>
+      <div class="pub-meta">Edward Shim et al. · Brighter Signals B.V. · Eurostars-9 Project 10008 WP10–11 output · In preparation · Expected 2027–28</div>
+    </div>
+    <span class="pub-badge pb-future">Forthcoming</span>
+  </div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link">Projected Dielectric Sensor: Extended Characterisation of Off-Axis Detection at Distances 10 cm–5 m</div>
+      <div class="pub-meta">Edward Shim · Brighter Signals B.V. · Expanding on US 12,399,294 B1 · In preparation</div>
+    </div>
+    <span class="pub-badge pb-future">Forthcoming</span>
+  </div>
+
+  <!-- PRESS -->
+  <div class="pub-group reveal">Press &amp; Expert Commentary</div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link"><a href="https://www.eetasia.com/covid-19-getting-to-grips-with-respiration/" target="_blank">COVID-19: Getting to Grips with Respiration</a></div>
+      <div class="pub-meta">EE News Asia · Matthew Burgess · 2020 · Edward Shim quoted as technical expert on BCRSS triage respiratory monitoring, dynamic signal sensing over distance, and edge-computing deployment with IBM &amp; Marist College</div>
+    </div>
+    <span class="pub-badge pb-press">Press · EENews</span>
+  </div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link"><a href="https://www.asiapacific.ca/publication/bedsheets-ppe-canadian-start-finds-its-place-covid-economy" target="_blank">From Bedsheets to PPE: A Canadian Start-up Finds its Place in the COVID Economy</a></div>
+      <div class="pub-meta">Asia Pacific Foundation of Canada · Siân Jones · 22 Jul 2020 · Studio 1 Labs' pivot from fabric sensors to Health Canada-cleared PPE production in five weeks</div>
+    </div>
+    <span class="pub-badge pb-press">Press · APF Canada</span>
+  </div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link"><a href="https://pr.theglobeandmail.com/march-3-2021" target="_blank">Report on Business — Best Executive Awards 2021</a></div>
+      <div class="pub-meta">The Globe and Mail · Report on Business · 3 Mar 2021 · Edward Shim named among 50 national winners in the Operations category · Managing Director, Studio 1 Labs · Editorial feature, May 2021</div>
+    </div>
+    <span class="pub-badge pb-press">Globe &amp; Mail 2021</span>
+  </div>
+
+  <div class="pub-item reveal">
+    <div>
+      <div class="pub-title-link"><a href="https://www.forbes.com/councils/forbestechcouncil/2019/03/06/12-key-factors-for-deciding-if-new-tech-is-right-for-your-organization/" target="_blank">12 Key Factors for Deciding if New Tech Is Right for Your Organization</a></div>
+      <div class="pub-meta">Forbes · Forbes Technology Council Expert Panel · 6 Mar 2019 · Contribution by Edward Shim as vetted Forbes Tech Council member</div>
+    </div>
+    <span class="pub-badge pb-council">Forbes Tech Council</span>
+  </div>
+</section>
+
+<!-- GRANTS -->
+<section id="grants">
+  <div class="sec-header reveal">
+    <span class="sec-num">06</span>
+    <h2 class="sec-title">FUNDED <em>RESEARCH</em></h2>
+    <div class="sec-rule"></div>
+  </div>
+
+  <div class="pub-group reveal" style="margin-top:0;">European Union · Eurostars-9 Programme</div>
+  <div class="grant-grid">
+    <div class="grant-row reveal">
+      <div class="grant-funder">Eurostars-9 / Horizon Europe · NL + PT</div>
+      <div>
+        <div class="grant-title">HD Tactile Sensors — High-Depth Tactile Sensors for Integration with Full Robot Hand for Artificial Haptics Equivalent to Human Touch · Project 10008</div>
+        <div class="grant-period">1 Feb 2026 – Oct 2028 · 31 months · Coordinator: Brighter Signals B.V. · Partner: Seed Cognitiva Robotics Innovation Ltd (Portugal) · 13 work packages · Selected by International Eurostars Committee</div>
+      </div>
+      <div class="grant-amount">€1,413,490</div>
+    </div>
+  </div>
+
+  <div class="pub-group reveal">Canada — Federal &amp; Provincial Agencies</div>
+  <div class="grant-grid">
+    <div class="grant-row reveal">
+      <div class="grant-funder">FedDev Ontario + OCE</div>
+      <div><div class="grant-title">Triage Management for Emergency Services to Enhance Life-Saving Measures for Extreme Casualties</div><div class="grant-period">Mar 2019 – Jan 2020</div></div>
+      <div class="grant-amount">—</div>
+    </div>
+    <div class="grant-row reveal">
+      <div class="grant-funder">FedDev Ontario + OCE</div>
+      <div><div class="grant-title">Continuous Vital Sign Monitoring Using Intelligent Bedsheet</div><div class="grant-period">Jul 2018 – Jun 2019</div></div>
+      <div class="grant-amount">—</div>
+    </div>
+    <div class="grant-row reveal">
+      <div class="grant-funder">NSERC</div>
+      <div><div class="grant-title">Development of Artificial Exterior Skin for Robotics Providing Dexterity Feedback Equivalent to Human Sense of Touch</div><div class="grant-period">Sep 2018 – Feb 2019</div></div>
+      <div class="grant-amount">—</div>
+    </div>
+    <div class="grant-row reveal">
+      <div class="grant-funder">NRC Canada</div>
+      <div><div class="grant-title">Using Functional Bed Sheet to Monitor Physiological Signals of Diverse Sample Populations</div><div class="grant-period">Mar 2018 – Feb 2019</div></div>
+      <div class="grant-amount">—</div>
+    </div>
+    <div class="grant-row reveal">
+      <div class="grant-funder">NSERC</div>
+      <div><div class="grant-title">Custom FPGA System for Intelligent Bed Sheet Patient Monitor</div><div class="grant-period">Mar 2018 – Sep 2018</div></div>
+      <div class="grant-amount">—</div>
+    </div>
+    <div class="grant-row reveal">
+      <div class="grant-funder">FedDev Ontario</div>
+      <div><div class="grant-title">Interface Enclosure for FPGA Circuitry — Intelligent Bedsheet</div><div class="grant-period">May 2018 – Jul 2018</div></div>
+      <div class="grant-amount">—</div>
+    </div>
+    <div class="grant-row reveal">
+      <div class="grant-funder">FedDev Ontario + OCE</div>
+      <div><div class="grant-title">Wire-Free Continuous Respiratory Monitoring Using Functional Bed Sheet</div><div class="grant-period">Jul 2017 – Jun 2018</div></div>
+      <div class="grant-amount">—</div>
+    </div>
+    <div class="grant-row reveal">
+      <div class="grant-funder">OCE</div>
+      <div><div class="grant-title">Development of Adaptive System for Data Processing for Vital Signs Detection Using Smart Fabric Technology</div><div class="grant-period">Jul 2017 – Jun 2018</div></div>
+      <div class="grant-amount">—</div>
+    </div>
+    <div class="grant-row reveal">
+      <div class="grant-funder">OCE</div>
+      <div><div class="grant-title">Functional Bed Sheet Capturing Respiratory Effort</div><div class="grant-period">Nov 2017 – Oct 2018</div></div>
+      <div class="grant-amount">—</div>
+    </div>
+    <div class="grant-row reveal">
+      <div class="grant-funder">FedDev Ontario</div>
+      <div><div class="grant-title">Developing a User Interface for a Fabric Sensing Blanket for Use in Long-Term Care</div><div class="grant-period">Sep 2017 – Dec 2017</div></div>
+      <div class="grant-amount">—</div>
+    </div>
+    <div class="grant-row reveal">
+      <div class="grant-funder">NSERC</div>
+      <div><div class="grant-title">Wireless Continuous Respiratory Monitoring Using Functional Bedsheet</div><div class="grant-period">Dec 2016 – May 2017</div></div>
+      <div class="grant-amount">—</div>
+    </div>
+  </div>
+
+  <div class="pub-group reveal">International Academic Research Funding</div>
+  <div class="grant-grid">
+    <div class="grant-row reveal">
+      <div class="grant-funder">Marist College School of Science, USA</div>
+      <div><div class="grant-title">Developing a Scalable Platform and Analytics Dashboard for Manual Therapy Practices Using Pressure Sensing Fabric</div><div class="grant-period">Apr 2019 – Mar 2020 · Published: Springer 2021, ISBN 978-3-030-70873-3</div></div>
+      <div class="grant-amount">—</div>
+    </div>
+    <div class="grant-row reveal">
+      <div class="grant-funder">Marist College School of Science, USA</div>
+      <div><div class="grant-title">Compression Stocking Effectiveness Through Use of Nano Sensor Fabric</div><div class="grant-period">Oct 2019 – Dec 2019</div></div>
+      <div class="grant-amount">—</div>
+    </div>
+    <div class="grant-row reveal">
+      <div class="grant-funder">UPEI Atlantic Veterinary College</div>
+      <div><div class="grant-title">Functional Bed Sheet Capturing Pressure Variation and Respiratory Effort Over Time — Veterinary Clinical Study</div><div class="grant-period">Apr 2017 – Oct 2018 · NCT03119103 · Published: Vet. Anaesthesia &amp; Analgesia Vol. 45</div></div>
+      <div class="grant-amount">—</div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLABORATIONS -->
+<section id="collab">
+  <div class="sec-header reveal">
+    <span class="sec-num">07</span>
+    <h2 class="sec-title">ACADEMIC &amp; <em>INDUSTRIAL PARTNERS</em></h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="collab-grid reveal">
+    <div class="collab-cell">
+      <div class="collab-type">University · Canada</div>
+      <div class="collab-name">York University</div>
+      <div class="collab-detail">Innovation York · BioSA Lab (Prof. Ghafar-Zadeh) · YSpace · Nursing Simulation Centre · IEEE EMBC/CCECE publications</div>
+    </div>
+    <div class="collab-cell">
+      <div class="collab-type">University · Canada</div>
+      <div class="collab-name">University of Toronto</div>
+      <div class="collab-detail">Faculty of Medicine · MHSc Translational Research Program · Guest lecturer: Health Economics</div>
+    </div>
+    <div class="collab-cell">
+      <div class="collab-type">University · Canada</div>
+      <div class="collab-name">Ryerson University (TMU)</div>
+      <div class="collab-detail">Ted Rogers School of Management · Guest lecturer · Board of Governors (O.C. 1041/2021)</div>
+    </div>
+    <div class="collab-cell">
+      <div class="collab-type">University · Canada</div>
+      <div class="collab-name">McMaster University</div>
+      <div class="collab-detail">MSc eHealth Program · Online course lecturer · May 2019 – ongoing</div>
+    </div>
+    <div class="collab-cell">
+      <div class="collab-type">College · USA</div>
+      <div class="collab-name">Marist College</div>
+      <div class="collab-detail">School of Science &amp; Computer Science · Two funded projects · Springer 2021 book chapter · IBM cloud/edge computing trials</div>
+    </div>
+    <div class="collab-cell">
+      <div class="collab-type">University · Canada</div>
+      <div class="collab-name">University of Prince Edward Island</div>
+      <div class="collab-detail">Atlantic Veterinary College · IAC 2019 paper · Veterinary Anaesthesia &amp; Analgesia clinical study</div>
+    </div>
+    <div class="collab-cell">
+      <div class="collab-type">Consortium · Canada</div>
+      <div class="collab-name">SOSCIP / Queen's University</div>
+      <div class="collab-detail">Supercomputing infrastructure · Big data validation of bedsheet platform · TalentEdge funded fellows</div>
+    </div>
+    <div class="collab-cell">
+      <div class="collab-type">Tech Company · USA</div>
+      <div class="collab-name">IBM / Marist College</div>
+      <div class="collab-detail">Edge computing · Cloud IoT validation · CASCON 2018 publication · Cognitive computing forum speaker</div>
+    </div>
+    <div class="collab-cell">
+      <div class="collab-type">Industry · EU</div>
+      <div class="collab-name">Seed Cognitiva Robotics (Portugal)</div>
+      <div class="collab-detail">Eurostars-9 Project 10008 consortium partner · Full robot hand integration · 2026–2028</div>
+    </div>
+    <div class="collab-cell">
+      <div class="collab-type">Tier-1 Supplier · China</div>
+      <div class="collab-name">CAIP (Changshu Automotive)</div>
+      <div class="collab-detail">Strategic manufacturing agreement · Sensor production · European plant expansion 2026</div>
+    </div>
+    <div class="collab-cell">
+      <div class="collab-type">Networks · Canada</div>
+      <div class="collab-name">CENGN · NGen · ventureLAB</div>
+      <div class="collab-detail">Network infrastructure validation · Advanced manufacturing pitch · Health tech portfolio selection</div>
+    </div>
+    <div class="collab-cell">
+      <div class="collab-type">College · Canada</div>
+      <div class="collab-name">Niagara College</div>
+      <div class="collab-detail">Industry partnership · Research collaboration documentation (2017)</div>
+    </div>
+    <div class="collab-cell">
+      <div class="collab-type">College · Canada</div>
+      <div class="collab-name">Seneca Polytechnic (formerly Seneca College)</div>
+      <div class="collab-detail">Contract Professor · School of Hospitality &amp; Tourism · Seneca International Academy · Leading Global Business · Jan – Dec 2023 (contract + extension)</div>
+    </div>
+  </div>
+</section>
+
+<!-- OPEN SOURCE -->
+<section id="opensource">
+  <div class="sec-header reveal">
+    <span class="sec-num">08</span>
+    <h2 class="sec-title">OPEN <em>SOURCE</em></h2>
+    <div class="sec-rule"></div>
+  </div>
+  <p class="sec-sub reveal">Tools, firmware, and analysis pipelines released to the engineering and research community. Repositories forthcoming at github.com/ShimEdward — implementations of the sensor architectures and classification systems documented in the Technical Notes above.</p>
+  <div class="oss-grid reveal">
+    <div class="oss-cell">
+      <div class="oss-lang">C++ · Arduino</div>
+      <div class="oss-name">gesture-sensor-fw</div>
+      <div class="oss-desc">Stabilised firmware for mid-air capacitive gesture sensing. EMA filtering (α=0.15), slow-drift baseline correction, consecutive-reading noise guard, LED hysteresis via separate entry/exit thresholds.</div>
+      <a href="https://github.com/ShimEdward" target="_blank" class="oss-link">github.com/ShimEdward →</a>
+    </div>
+    <div class="oss-cell">
+      <div class="oss-lang">HTML · JS · Three.js r128</div>
+      <div class="oss-name">gesture-hmi-v3</div>
+      <div class="oss-desc">Self-contained Three.js + Web Serial API dashboard. Parses v3 serial format at 115200 baud. Full gesture state machine, 3D hand tracking scene, automotive demo presentation mode.</div>
+      <a href="https://github.com/ShimEdward" target="_blank" class="oss-link">github.com/ShimEdward →</a>
+    </div>
+    <div class="oss-cell">
+      <div class="oss-lang">Python · Jupyter</div>
+      <div class="oss-name">ocs-ml-analysis</div>
+      <div class="oss-desc">OOP pose classification pipeline: 967 observations, 20-dimensional feature vector, 6 models under 10-fold stratified CV, Shapley feature importance. Random Forest and Gradient Boosting lead binary and multi-class.</div>
+      <a href="https://github.com/ShimEdward" target="_blank" class="oss-link">github.com/ShimEdward →</a>
+    </div>
+    <div class="oss-cell">
+      <div class="oss-lang">C++ · Arduino</div>
+      <div class="oss-name">ocs-seat-firmware</div>
+      <div class="oss-desc">16×8 MUX-driven resistive seat matrix (CD74HC4067/CD74HC4051). VCC bandgap compensation, adaptive baseline EMA, dual-sensor gate fusion, backrest OOP detection. Clean 9-field CSV output.</div>
+      <a href="https://github.com/ShimEdward" target="_blank" class="oss-link">github.com/ShimEdward →</a>
+    </div>
+    <div class="oss-cell">
+      <div class="oss-lang">HTML · Chart.js</div>
+      <div class="oss-name">pulse-monitor-web</div>
+      <div class="oss-desc">Web Serial API pulse-rate monitoring application. Waveform and heart rate visualisation. Designed for bench-testing capacitive fabric sensors without dedicated hardware software.</div>
+      <a href="https://github.com/ShimEdward" target="_blank" class="oss-link">github.com/ShimEdward →</a>
+    </div>
+    <div class="oss-cell">
+      <div class="oss-lang">Python · R</div>
+      <div class="oss-name">cpd-ratio-classifier</div>
+      <div class="oss-desc">Reference implementation of the C5/C4 child presence classifier. Includes 36,376-sample anonymised dataset, Welch's t-test pipeline, Cohen's d, session-level cross-validation reporting.</div>
+      <a href="https://github.com/ShimEdward" target="_blank" class="oss-link">github.com/ShimEdward →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-id">Edward Shim · Brighter Signals B.V. · Prins Hendriklaan 5 · 1075 BA Amsterdam</span>
+  <div class="footer-links">
+    <a href="https://www.brightersignals.com" target="_blank">brightersignals.com</a>
+    <a href="https://patents.google.com/patent/US12399294B1" target="_blank">US12399294</a>
+    <a href="https://patents.google.com/patent/US10386224B2/en" target="_blank">US10386224</a>
+    <a href="https://patents.google.com/patent/WO2025012367A1/en" target="_blank">WO2025012367</a>
+    <a href="https://scholar.google.com/citations?user=XV_7vAkAAAAJ&hl=en" target="_blank">Scholar</a>
+    <a href="mailto:edward@brightersignals.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const sibs = [...e.target.parentElement.querySelectorAll('.reveal')];
+      const idx = sibs.indexOf(e.target);
+      setTimeout(()=>e.target.classList.add('visible'), idx * 70);
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:0.07});
+reveals.forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
