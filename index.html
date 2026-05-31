@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Edward Shim — Autodidact · Inventor · Pioneer in Tactile Intelligence</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -877,6 +877,581 @@ nav a, .footer-links a, .hero-links a, .oss-link, .pub-title-link a {
   .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
 }
 
+
+/* ─────────────────────────────────────────────
+   MOBILE FIT OVERRIDE LAYER
+   Preserves existing visual identity, colors, fonts, and branding.
+   Only adjusts sizing, wrapping, grids, tap targets, and media containment.
+───────────────────────────────────────────── */
+
+/* Global containment */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  min-width: 0;
+}
+
+section,
+nav,
+footer,
+.hero,
+.hero-content,
+.about-grid,
+.patent-item,
+.pub-item,
+.grant-row,
+.awards-grid,
+.contrib-grid,
+.collab-grid,
+.oss-grid,
+.hero-stats,
+.stat-row,
+.award-cell,
+.contrib-cell,
+.collab-cell,
+.oss-cell,
+.p-body,
+.about-body,
+.about-sidebar {
+  min-width: 0;
+}
+
+img,
+video,
+canvas,
+svg,
+iframe,
+object,
+embed {
+  max-width: 100%;
+  height: auto;
+}
+
+iframe,
+object,
+embed {
+  display: block;
+  width: 100%;
+  border: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+pre,
+code,
+.pub-meta,
+.p-meta,
+.grant-period,
+.collab-detail,
+.oss-desc,
+.sval,
+.p-desc,
+.contrib-body,
+.about-body p {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+/* Safer long-title wrapping */
+.hero-name,
+.sec-title,
+.p-title,
+.pub-title-link,
+.aw-name,
+.grant-title,
+.collab-name,
+.oss-name,
+.contrib-title {
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+/* Touch targets without changing the visual palette */
+a,
+summary,
+button,
+.htag,
+.p-badge,
+.pub-badge {
+  touch-action: manipulation;
+}
+
+nav a,
+.hero-links a,
+.footer-links a,
+.oss-link,
+.pub-title-link a,
+.sval a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Desktop/tablet containment for dense nav */
+@media (max-width: 1180px) {
+  nav {
+    gap: 1rem;
+  }
+
+  .nav-links {
+    max-width: calc(100vw - 11rem);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.25rem 0;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-links a {
+    white-space: nowrap;
+  }
+}
+
+/* Tablet and large-phone layout */
+@media (max-width: 900px) {
+  html {
+    scroll-padding-top: 56px;
+  }
+
+  body {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  nav {
+    height: 54px;
+    padding: 0 1.25rem !important;
+  }
+
+  .nav-id,
+  .nav-signal {
+    flex: 0 0 auto;
+  }
+
+  section {
+    padding: 3.2rem 1.25rem !important;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 6.5rem 1.25rem 3rem !important;
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr !important;
+    gap: 3.2rem;
+    align-items: start;
+  }
+
+  .hero-name {
+    font-size: clamp(3.4rem, 15vw, 5.6rem) !important;
+    line-height: 0.94;
+  }
+
+  .hero-title {
+    line-height: 1.55;
+  }
+
+  .hero-bio {
+    max-width: 100%;
+    font-size: 1rem;
+    padding-left: 1rem;
+  }
+
+  .hero-tags {
+    gap: 0.45rem;
+  }
+
+  .htag {
+    min-height: 34px;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1.25;
+  }
+
+  .hero-stats {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .stat-row {
+    padding: 1.15rem 1.1rem;
+    min-width: 0;
+  }
+
+  .stat-val {
+    font-size: clamp(1.9rem, 8vw, 2.5rem);
+  }
+
+  .stat-lbl {
+    max-width: 18ch;
+    font-size: 0.62rem;
+  }
+
+  .hero-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .hero-links {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 0.85rem 1.2rem;
+  }
+
+  .sec-header {
+    gap: 0.9rem;
+    margin-bottom: 2.4rem;
+    flex-wrap: wrap;
+  }
+
+  .sec-title {
+    font-size: clamp(2.1rem, 10vw, 3.4rem);
+  }
+
+  .sec-rule {
+    max-width: 64px;
+  }
+
+  .patent-item,
+  .pub-item,
+  .grant-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .patent-item {
+    gap: 0.75rem !important;
+    padding: 2rem 0;
+  }
+
+  .p-badge,
+  .pub-badge,
+  .grant-amount {
+    justify-self: start;
+    align-self: start;
+    white-space: normal;
+    line-height: 1.35;
+  }
+
+  .pub-item {
+    gap: 0.7rem !important;
+    padding: 1.45rem 0;
+  }
+
+  .awards-grid,
+  .oss-grid,
+  .collab-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .contrib-grid,
+  .about-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .about-grid {
+    gap: 2.2rem;
+  }
+
+  .award-cell,
+  .oss-cell,
+  .collab-cell,
+  .contrib-cell {
+    padding: 1.6rem 1.25rem;
+  }
+
+  footer {
+    padding: 2rem 1.25rem !important;
+    gap: 1.2rem;
+  }
+}
+
+/* Phone layout */
+@media (max-width: 640px) {
+  body::before {
+    opacity: 0.55;
+  }
+
+  nav {
+    height: 52px;
+    padding: 0 1rem !important;
+  }
+
+  .nav-id {
+    font-size: 1rem;
+  }
+
+  .nav-links {
+    display: none !important;
+  }
+
+  section {
+    padding: 2.8rem 1rem !important;
+  }
+
+  .hero {
+    padding: 5.9rem 1rem 2.5rem !important;
+  }
+
+  .hero::after {
+    height: 90px;
+  }
+
+  .hero-grid-bg {
+    background-size: 42px 42px;
+    opacity: 0.55;
+  }
+
+  .hero-bg-text {
+    display: none !important;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.62rem !important;
+    letter-spacing: 0.14em !important;
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+
+  .hero-name {
+    font-size: clamp(3.05rem, 18vw, 4.3rem) !important;
+    margin-bottom: 0.85rem;
+  }
+
+  .hero-title {
+    font-size: 0.68rem !important;
+    letter-spacing: 0.11em !important;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-bio {
+    font-size: 0.98rem;
+    line-height: 1.72;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-stats {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-stats::before {
+    position: static;
+    display: block;
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .stat-row {
+    border-right: 0 !important;
+    padding: 1rem;
+  }
+
+  .stat-lbl {
+    max-width: 22ch;
+    text-align: right;
+  }
+
+  .hero-scroll-hint {
+    display: none;
+  }
+
+  .hero-links {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .hero-links a,
+  .footer-links a {
+    width: 100%;
+    justify-content: center;
+    border: 1px solid var(--line);
+    padding: 0.55rem 0.75rem;
+  }
+
+  .sec-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: end;
+    gap: 0.6rem 0.85rem;
+  }
+
+  .sec-rule {
+    grid-column: 1 / -1;
+    width: 70px;
+  }
+
+  .sec-sub {
+    font-size: 0.82rem !important;
+    line-height: 1.65;
+  }
+
+  .patent-item:hover,
+  .pub-item:hover {
+    padding-left: 0;
+  }
+
+  .patent-item::before {
+    left: -1rem;
+  }
+
+  .p-title,
+  .pub-title-link {
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  .p-desc,
+  .about-body p,
+  .contrib-body {
+    font-size: 0.94rem;
+  }
+
+  .pub-meta,
+  .p-meta,
+  .grant-period,
+  .aw-org,
+  .collab-detail,
+  .oss-desc,
+  .sval {
+    font-size: 0.78rem !important;
+    line-height: 1.62 !important;
+  }
+
+  .pub-badge,
+  .p-badge {
+    max-width: 100%;
+  }
+
+  .awards-grid,
+  .oss-grid,
+  .collab-grid,
+  .contrib-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .award-cell,
+  .oss-cell,
+  .collab-cell,
+  .contrib-cell {
+    padding: 1.45rem 1rem;
+  }
+
+  .innovation-intro {
+    padding: 1.2rem 1rem;
+  }
+
+  .innovation-intro p,
+  .open-research-note {
+    font-size: 0.72rem !important;
+    line-height: 1.65;
+  }
+
+  .pub-group {
+    line-height: 1.5;
+    letter-spacing: 0.13em !important;
+  }
+
+  .about-sidebar {
+    width: 100%;
+  }
+
+  .srow {
+    gap: 0.35rem;
+  }
+
+  footer {
+    flex-direction: column !important;
+    text-align: center;
+    padding: 2rem 1rem !important;
+  }
+
+  .footer-links {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+}
+
+/* Very small phones: iPhone SE / narrow Android */
+@media (max-width: 390px) {
+  body {
+    font-size: 15.5px;
+  }
+
+  section {
+    padding-left: 0.85rem !important;
+    padding-right: 0.85rem !important;
+  }
+
+  .hero {
+    padding-left: 0.85rem !important;
+    padding-right: 0.85rem !important;
+  }
+
+  .hero-name {
+    font-size: clamp(2.72rem, 17vw, 3.65rem) !important;
+  }
+
+  .sec-title {
+    font-size: clamp(1.9rem, 12vw, 2.8rem);
+  }
+
+  .stat-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+  }
+
+  .stat-lbl {
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .htag {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .award-cell,
+  .oss-cell,
+  .collab-cell,
+  .contrib-cell,
+  .innovation-intro {
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+  }
+}
+
+/* iOS safe-area support */
+@supports (padding: max(0px)) {
+  nav {
+    padding-left: max(1.2rem, env(safe-area-inset-left));
+    padding-right: max(1.2rem, env(safe-area-inset-right));
+  }
+
+  @media (max-width: 640px) {
+    nav {
+      padding-left: max(1rem, env(safe-area-inset-left)) !important;
+      padding-right: max(1rem, env(safe-area-inset-right)) !important;
+    }
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1102,7 +1677,7 @@ nav a, .footer-links a, .hero-links a, .oss-link, .pub-title-link a {
     <div class="award-cell">
       <div class="aw-year">Service</div>
       <div class="aw-name">Humanitarian Award</div>
-      <div class="aw-org">Trauma care innovation (extreme casualty solutions) + coordination of PPE supply to Canada at onset of COVID-19 pandemic</div>
+      <div class="aw-org">Service recognition by The Queen's Own Rifles of Canada, Canada's oldest infantry regiment</div>
     </div>
     <div class="award-cell">
       <div class="aw-year">2025</div>
@@ -1143,7 +1718,7 @@ nav a, .footer-links a, .hero-links a, .oss-link, .pub-title-link a {
     <div class="contrib-cell">
       <span class="contrib-icon">⬡</span>
       <div class="contrib-title">Child Presence Detection via C4/C5 Capacitive Ratio</div>
-      <div class="contrib-body">Validated a zero-hardware-overhead classifier: a simple C5/C4 channel ratio achieves 100% accuracy (Welch's t=103.9, Cohen's d=1.57) distinguishing a human infant from inanimate objects — across 5 sessions and 36,376 samples. Directly applicable to automotive CPD mandates without additional sensor hardware.</div>
+      <div class="contrib-body">Validated a zero-hardware-overhead classifier: a simple two-channel ratio achieves 100% accuracy (Welch's t=103.9, Cohen's d=1.57) distinguishing a human infant from inanimate objects — across 5 sessions and 36,376 samples. Directly applicable to automotive CPD mandates without additional sensor hardware.</div>
     </div>
     <div class="contrib-cell">
       <span class="contrib-icon">△</span>
@@ -1153,7 +1728,7 @@ nav a, .footer-links a, .hero-links a, .oss-link, .pub-title-link a {
     <div class="contrib-cell">
       <span class="contrib-icon">○</span>
       <div class="contrib-title">ML-Based Out-of-Position Classification — 20-Feature Study</div>
-      <div class="contrib-body">Six models under 10-fold stratified CV across 967 pose observations and a 20-dimensional feature vector. Random Forest led binary OOP F1 (66.52%); Gradient Boosting led 5-class (54.19%). C5/C4 ratio identified as the top discriminating feature. Forward lean confirmed as dominant OOP type (61% of instances).</div>
+      <div class="contrib-body">Six models under 10-fold stratified CV across 967 pose observations and a 20-dimensional feature vector. Random Forest led binary OOP F1 (66.52%); Gradient Boosting led 5-class (54.19%). Two-channel ratio identified as the top discriminating feature. Forward lean confirmed as dominant OOP type (61% of instances).</div>
     </div>
     <div class="contrib-cell">
       <span class="contrib-icon">✦</span>
@@ -1279,7 +1854,7 @@ nav a, .footer-links a, .hero-links a, .oss-link, .pub-title-link a {
 
   <div class="pub-item reveal">
     <div>
-      <div class="pub-title-link">C5/C4 Capacitive Ratio as a Zero-Hardware-Overhead Child Presence Classifier: A Proof-of-Concept Study</div>
+      <div class="pub-title-link">Two-Channel Capacitive Ratio as a Zero-Hardware-Overhead Child Presence Classifier: A Proof-of-Concept Study</div>
       <div class="pub-meta">Edward Shim · Brighter Signals B.V. · 36,376-sample dataset · 5 sessions · Welch's t=103.9 · Cohen's d=1.57 · Self-published Technical Note</div>
     </div>
     <span class="pub-badge pb-open">Technical Note</span>
@@ -1589,7 +2164,7 @@ nav a, .footer-links a, .hero-links a, .oss-link, .pub-title-link a {
     <div class="oss-cell">
       <div class="oss-lang">Python · R</div>
       <div class="oss-name">cpd-ratio-classifier</div>
-      <div class="oss-desc">Reference implementation of the C5/C4 child presence classifier. Includes 36,376-sample anonymised dataset, Welch's t-test pipeline, Cohen's d, session-level cross-validation reporting.</div>
+      <div class="oss-desc">Reference implementation of the two-channel child presence classifier. Includes 36,376-sample anonymised dataset, Welch's t-test pipeline, Cohen's d, session-level cross-validation reporting.</div>
       <a href="https://github.com/ShimEdward" target="_blank" class="oss-link">github.com/ShimEdward →</a>
     </div>
   </div>
